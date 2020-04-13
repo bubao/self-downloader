@@ -3,7 +3,7 @@
  * @Author: bubao
  * @Date: 2020-03-08 13:41:05
  * @LastEditors: bubao
- * @LastEditTime: 2020-03-08 17:14:14
+ * @LastEditTime: 2020-03-09 18:46:44
  */
 const URL = require("url");
 const qs = require("qs");
@@ -19,11 +19,10 @@ const qs = require("qs");
 function parse(str) {
 	const result = URL.parse(str);
 	result.query = qs.parse(result.query);
-	result.protocol = result.protocol.replace(":", "");
-	if (!(result.protocol === "https" || result.protocol === "http")) {
+	if (!(result.protocol === "https:" || result.protocol === "http:")) {
 		throw new Error("url must be https or http");
 	}
 	return result;
 }
 
-module.parse = parse;
+module.exports = parse;

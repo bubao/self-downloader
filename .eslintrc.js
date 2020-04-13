@@ -1,3 +1,10 @@
+/**
+ * @Description: 
+ * @Author: bubao
+ * @Date: 2020-03-08 13:33:59
+ * @LastEditors: bubao
+ * @LastEditTime: 2020-03-09 19:53:55
+ */
 module.exports = {
 	root: true,
 	env: {
@@ -15,6 +22,7 @@ module.exports = {
 		sourceType: "module"
 	},
 	rules: {
+		"no-return-await":0,
 		"prettier/prettier": "error",
 		semi: [2, "always"],
 		quotes: [2, "double"],

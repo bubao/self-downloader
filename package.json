@@ -8,7 +8,11 @@
 	"dependencies": {
 		"mkdirp2": "^1.0.4",
 		"qs": "^6.9.1",
-		"querystring": "^0.2.0"
+		"querystring": "^0.2.0",
+		"request": "^2.88.2",
+		"request-progress": "^3.0.0",
+		"throttleit": "^1.0.0",
+		"validate": "^5.1.0"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^8.2.0",
