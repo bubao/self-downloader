@@ -2,31 +2,13 @@
  * @Description:
  * @Author: bubao
  * @Date: 2020-03-08 22:52:04
- * @LastEditors: bubao
- * @LastEditTime: 2020-03-08 23:32:42
+ * @last author: bubao
+ * @last edit time: 2021-03-05 00:54:39
  */
 const { URL, URLSearchParams } = require("url");
 const crypto = require("crypto");
 const path = require("path");
-/**
- * mkdir
- * @param {string} filePath dir路径
- */
-// function mkdir(filePath) {
-// 	fs.exists(filePath, exists => {
-// 		if (exists) {
-// 			console.log(`⚓  ${name} 文件夹已经存在`);
-// 		} else {
-// 			fs.mkdir(filePath, err => {
-// 				if (err) {
-// 					console.error(err);
-// 				}
-// 				console.log(`🤖 创建 ${name}文件夹成功`);
-// 			});
-// 		}
-// 	});
-// }
-const clamp = (value, min, max) => {
+function clamp(value, min, max) {
 	if (min === undefined) {
 		return value;
 	}
@@ -46,14 +28,21 @@ const clamp = (value, min, max) => {
 		return min;
 	}
 	return value;
-};
+}
 
 /**
- * 获取url的参数
- * @param {number} offset
- * @param {number} limit
+ * @description 获取url的参数
+ * @author bubao
+ * @date 2021-02-06
+ * @param {{
+ *     offset:number, limit:number
+ *   }} params
+ * @returns {{
+ *   limit: number;
+ *   "amp;offset": number;
+ *  }}
  */
-const getURLParams = params => {
+function getURLParams(params) {
 	let { offset, limit, ...other } = params;
 	limit = limit ? clamp(limit, 1, 20) : undefined;
 	offset = isNaN(offset * limit) ? offset * limit : undefined;
@@ -62,37 +51,61 @@ const getURLParams = params => {
 		"amp;offset": offset,
 		...other
 	};
-};
+}
 
-const defaultName = url => {
+/**
+ * @description
+ * @author bubao
+ * @date 2021-02-06
+ * @param {string} url
+ * @returns
+ */
+function defaultName(url) {
 	return path.basename(parseURL(url).pathname);
-};
+}
 
-const parseURL = url => {
+/**
+ * @description
+ * @author bubao
+ * @date 2021-02-06
+ * @param {string} url
+ * @returns
+ */
+function parseURL(url) {
 	return new URL(url);
-};
+}
 
-const MD5 = str => {
+/**
+ * @description md5
+ * @author bubao
+ * @date 2021-02-06
+ * @param {string} str
+ * @returns
+ */
+function MD5(str) {
 	return crypto
 		.createHash("md5")
 		.update(str, "utf8")
 		.digest("hex");
-};
+}
 
 /**
  * 获取真实url
  * @param {string} url url
  * @param {object} params url参数object
  */
-const getTrueURL = (url, params) => {
+function getTrueURL(url, params) {
 	url = parseURL(url);
 	url.search = new URLSearchParams(getURLParams(params));
 	return url.toString();
-};
+}
 
 /**
- * 字节转换
+ * @description 字节转换
+ * @author bubao
+ * @date 2021-02-06
  * @param {number} limit
+ * @returns
  */
 function byteSize(limit) {
 	let size = "";
@@ -141,10 +154,6 @@ function time(d) {
 		h = parseInt(d / 60 / 60);
 		m = parseInt((d - h * 60 * 60) / 60);
 		s = d - h * 60 * 60 - m * 60;
-		// s = d % 60;
-		// m = (d - s) / 60;
-		// m = m >= 60 ? 0 : m;
-		// h = (d - s - m * 60) / 60 / 60;
 		t = _pad(h) + ":" + _pad(m) + ":" + _pad(s);
 	}
 	return t;

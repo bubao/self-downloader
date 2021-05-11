@@ -2,8 +2,8 @@
  * @Description: qs
  * @Author: bubao
  * @Date: 2020-03-07 21:50:28
- * @LastEditors: bubao
- * @LastEditTime: 2020-03-08 13:56:13
+ * @last author: bubao
+ * @last edit time: 2021-03-05 00:52:55
  */
 const qs = require("qs");
 const querystring = require("querystring");
@@ -32,24 +32,24 @@ class QueryString {
 	stringify(obj) {
 		return this.useQuerystring
 			? this.rfc3986(
-					this.lib.stringify(
-						obj,
-						this.stringifyOptions.sep || null,
-						this.stringifyOptions.eq || null,
-						this.stringifyOptions
-					)
-			  )
+				this.lib.stringify(
+					obj,
+					this.stringifyOptions.sep || null,
+					this.stringifyOptions.eq || null,
+					this.stringifyOptions
+				)
+			)
 			: this.lib.stringify(obj, this.stringifyOptions);
 	}
 
 	parse(str) {
 		return this.useQuerystring
 			? this.lib.parse(
-					str,
-					this.parseOptions.sep || null,
-					this.parseOptions.eq || null,
-					this.parseOptions
-			  )
+				str,
+				this.parseOptions.sep || null,
+				this.parseOptions.eq || null,
+				this.parseOptions
+			)
 			: this.lib.parse(str, this.parseOptions);
 	}
 

@@ -2,5 +2,6 @@
 	"editor.formatOnSave": false, // 自动修复
 	"editor.codeActionsOnSave": {
 		"source.fixAll.eslint": true
-	}
+	},
+	"eggHelper.serverPort": 35684
 }
